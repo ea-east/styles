@@ -2,10 +2,11 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
   <!-- This style was edited with the Visual CSL Editor (http://steveridout.com/csl/visualEditor/) -->
   <info>
-    <title>American Psychological Association 6th edition (annotated bibliography with abstract)</title>
+    <title>American Psychological Association 6th edition (single-spaced bibliography)</title>
     <title-short>APA</title-short>
-    <id>http://www.zotero.org/styles/apa-annotated-bibliography</id>
-    <link href="http://www.zotero.org/styles/apa-annotated-bibliography" rel="self"/>
+    <id>http://www.zotero.org/styles/apa-single-spaced</id>
+    <link href="http://www.zotero.org/styles/apa-single-spaced" rel="self"/>
+    <link href="http://www.zotero.org/styles/apa" rel="template"/>
     <link href="http://owl.english.purdue.edu/owl/resource/560/01/" rel="documentation"/>
     <author>
       <name>Simon Kornblith</name>
@@ -28,8 +29,7 @@
     <category citation-format="author-date"/>
     <category field="psychology"/>
     <category field="generic-base"/>
-    <summary>APA style with abstract added as annotation in bibliography</summary>
-    <updated>2013-02-26T04:33:40+00:00</updated>
+    <updated>2014-07-06T15:22:58+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -458,7 +458,7 @@
       </group>
     </layout>
   </citation>
-  <bibliography hanging-indent="true" et-al-min="8" et-al-use-first="6" et-al-use-last="true" entry-spacing="0" line-spacing="2">
+  <bibliography hanging-indent="true" et-al-min="8" et-al-use-first="6" et-al-use-last="true" entry-spacing="0">
     <sort>
       <key macro="author"/>
       <key macro="issued-sort" sort="ascending"/>
@@ -480,7 +480,6 @@
         </group>
       </group>
       <text macro="access" prefix=" "/>
-      <text variable="abstract" display="block"/>
     </layout>
   </bibliography>
 </style>

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" page-range-format="minimal" default-locale="en-US">
   <info>
-    <title>Journal of Biomedical Materials Research Part A</title>
-    <title-short>J Biomed Mater Res A</title-short>
-    <id>http://www.zotero.org/styles/journal-of-biomedical-materials-research-part-a</id>
-    <link href="http://www.zotero.org/styles/journal-of-biomedical-materials-research-part-a" rel="self"/>
-    <link href="http://www.nlm.nih.gov/bsd/uniform_requirements.html" rel="documentation"/>
-    <link href="http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1552-4965/homepage/ForAuthors.html" rel="documentation"/>
+    <title>Journal of Rheumatology</title>
+    <id>http://www.zotero.org/styles/journal-of-rheumatology</id>
+    <link href="http://www.zotero.org/styles/journal-of-rheumatology" rel="self"/>
+    <link href="http://www.zotero.org/styles/vancouver" rel="template"/>
+    <link href="http://www.jrheum.com/guideforauthors.html#References" rel="documentation"/>
     <author>
-      <name>Harsha Ramaraju</name>
-      <email>harsha.ramaraju@gmail.com</email>
+      <name>Charles Parnot</name>
+      <email>charles@mekentosj.com</email>
+      <uri>http://twitter.com/cparnot</uri>
     </author>
     <category citation-format="numeric"/>
     <category field="medicine"/>
-    <issn>1549-3296</issn>
-    <eissn>1552-4965</eissn>
-    <summary>Vancouver Style parenthetical superscripts no et al.</summary>
-    <updated>2013-08-01T21:32:37+00:00</updated>
+    <issn>0315-162X</issn>
+    <eissn>1499-2752</eissn>
+    <updated>2014-07-09T12:00:00+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -26,7 +25,9 @@
       <date-part name="day"/>
     </date>
     <terms>
+      <term name="presented at">presented at</term>
       <term name="retrieved">available</term>
+      <term name="page-range-delimiter">-</term>
       <term name="section" form="short">sect.</term>
     </terms>
   </locale>
@@ -42,13 +43,13 @@
   <macro name="editor">
     <group delimiter=": ">
       <choose>
-        <if type="chapter paper-conference">
+        <if type="chapter paper-conference" match="any">
           <text term="in" text-case="capitalize-first"/>
         </if>
       </choose>
       <names variable="editor" suffix=".">
         <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
-        <label prefix=" "/>
+        <label form="long" prefix=", "/>
       </names>
     </group>
   </macro>
@@ -58,8 +59,9 @@
         <if type="thesis">
           <text variable="publisher-place" prefix="[" suffix="]"/>
         </if>
+        <else-if type="speech"/>
         <else>
-          <text variable="publisher-place" form="short"/>
+          <text variable="publisher-place"/>
         </else>
       </choose>
       <text variable="publisher"/>
@@ -91,8 +93,15 @@
   <macro name="container-title">
     <choose>
       <if type="article-journal article-magazine chapter paper-conference article-newspaper" match="any">
-        <group suffix="." delimiter=" ">
-          <text variable="container-title" form="short" strip-periods="true"/>
+        <group delimiter=" ">
+          <choose>
+            <if type="article-journal">
+              <text variable="container-title" form="short" strip-periods="true"/>
+            </if>
+            <else>
+              <text variable="container-title" strip-periods="true"/>
+            </else>
+          </choose>
           <choose>
             <if variable="URL">
               <text term="internet" prefix="[" suffix="]" text-case="capitalize-first"/>
@@ -101,10 +110,11 @@
         </group>
         <text macro="edition" prefix=" "/>
       </if>
-      <else-if type="bill legislation">
+      <!--add event-name and event-place once they become available-->
+      <else-if type="bill legislation" match="any">
         <group delimiter=", ">
           <group delimiter=". ">
-            <text variable="container-title" form="short"/>
+            <text variable="container-title"/>
             <group delimiter=" ">
               <text term="section" form="short" text-case="capitalize-first"/>
               <text variable="section"/>
@@ -113,8 +123,17 @@
           <text variable="number"/>
         </group>
       </else-if>
+      <else-if type="speech">
+        <group delimiter=": " suffix=";">
+          <group delimiter=" ">
+            <text variable="genre" text-case="capitalize-first"/>
+            <text term="presented at"/>
+          </group>
+          <text variable="event"/>
+        </group>
+      </else-if>
       <else>
-        <text variable="container-title" suffix="." form="short"/>
+        <text variable="container-title"/>
       </else>
     </choose>
   </macro>
@@ -153,11 +172,13 @@
     <choose>
       <if type="article-journal article-magazine article-newspaper" match="any">
         <group suffix=";" delimiter=" ">
-          <date date-parts="year" form="text" variable="issued"/>
+            <date variable="issued">
+              <date-part name="year"/>
+            </date>
           <text macro="accessed-date"/>
         </group>
       </if>
-      <else-if type="book">
+      <else-if type="bill legislation" match="any">
         <group delimiter=", ">
           <date variable="issued" delimiter=" ">
             <date-part name="month" form="short" strip-periods="true"/>
@@ -174,6 +195,27 @@
           <date-part name="month" form="short" strip-periods="true"/>
         </date>
       </else-if>
+      <else-if type="patent">
+        <group suffix=".">
+          <group delimiter=", ">
+            <text variable="number"/>
+            <date variable="issued">
+              <date-part name="year"/>
+            </date>
+          </group>
+          <text macro="accessed-date" prefix=" "/>
+        </group>
+      </else-if>
+      <else-if type="speech">
+        <group delimiter="; ">
+          <date variable="issued" delimiter=" ">
+            <date-part name="year"/>
+            <date-part name="month" form="short" strip-periods="true"/>
+            <date-part name="day"/>
+          </date>
+          <text variable="event-place"/>
+        </group>
+      </else-if>
       <else>
         <group suffix=".">
           <date variable="issued">
@@ -186,21 +228,24 @@
   </macro>
   <macro name="pages">
     <choose>
-      <if type="book" match="any">
-        <text variable="number-of-pages" prefix=". " suffix=" p"/>
-        <choose>
-          <if type="chapter" match="any">
-            <text variable="page" prefix="p "/>
-          </if>
-        </choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="page" prefix=":"/>
       </if>
+      <else-if type="book" match="any">
+        <text variable="number-of-pages" prefix=" " suffix=" p"/>
+      </else-if>
+      <else>
+        <group prefix=" " delimiter=" ">
+          <label variable="page" form="short" plural="never"/>
+          <text variable="page"/>
+        </group>
+      </else>
     </choose>
   </macro>
   <macro name="journal-location">
     <choose>
       <if type="article-journal article-magazine" match="any">
         <text variable="volume"/>
-        <text variable="page" form="short" prefix=":"/>
       </if>
     </choose>
   </macro>
@@ -215,11 +260,11 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout vertical-align="sup" delimiter=",">
-      <text variable="citation-number" form="short" prefix="(" suffix=")"/>
+    <layout prefix="(" suffix=")" delimiter=",">
+      <text variable="citation-number"/>
     </layout>
   </citation>
-  <bibliography second-field-align="flush">
+  <bibliography et-al-min="7" et-al-use-first="6" second-field-align="flush">
     <layout>
       <text variable="citation-number" suffix=". "/>
       <group delimiter=". " suffix=". ">
@@ -228,7 +273,7 @@
       </group>
       <group delimiter=" " suffix=". ">
         <text macro="editor"/>
-        <text macro="container-title" strip-periods="true"/>
+        <text macro="container-title"/>
         <text macro="publisher"/>
         <group>
           <text macro="date"/>
