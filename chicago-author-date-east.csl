@@ -100,28 +100,61 @@
     </names>
   </macro>
   <macro name="contributors">
-    <group delimiter=". ">
-      <names variable="author">
-        <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-        <label form="short" prefix=", "/>
-        <substitute>
-          <names variable="editor"/>
-          <names variable="translator"/>
-          <text macro="title"/>
-        </substitute>
-      </names>
-      <text macro="recipient"/>
-    </group>
+    <choose>
+      <if type="manuscript">
+	<group delimiter=". ">
+	  <names variable="author">
+            <label form="short" suffix=" " text-case="capitalize-first"/>
+            <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
+            <substitute>
+              <names variable="editor"/>
+              <names variable="translator"/>
+              <text macro="title"/>
+            </substitute>
+	  </names>
+	  <text macro="recipient"/>
+	</group>
+      </if>
+      <else>
+	<group delimiter=". ">
+	  <names variable="author">
+            <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
+            <label form="short" prefix=", "/>
+            <substitute>
+              <names variable="editor"/>
+              <names variable="translator"/>
+              <text macro="title"/>
+            </substitute>
+	  </names>
+	  <text macro="recipient"/>
+	</group>
+      </else>
+    </choose>
   </macro>
   <macro name="contributors-short">
-    <names variable="author">
-      <name form="short" and="text" delimiter=", " initialize-with=". "/>
-      <substitute>
-        <names variable="editor"/>
-        <names variable="translator"/>
-        <text macro="title"/>
-      </substitute>
-    </names>
+    <choose>
+      <if type="manuscript">
+	<names variable="author">
+	  <label form="short" suffix=" " text-case="capitalize-first"/>
+	  <name form="short" and="text" delimiter=", " initialize-with=". "/>
+	  <substitute>
+            <names variable="editor"/>
+            <names variable="translator"/>
+            <text macro="title"/>
+	  </substitute>
+	</names>
+      </if>
+      <else>
+	<names variable="author">
+	  <name form="short" and="text" delimiter=", " initialize-with=". "/>
+	  <substitute>
+            <names variable="editor"/>
+            <names variable="translator"/>
+            <text macro="title"/>
+	  </substitute>
+	</names>
+      </else>
+    </choose>
   </macro>
   <macro name="interviewer">
     <names variable="interviewer" delimiter=", ">
@@ -180,7 +213,7 @@
           </if>
         </choose>
       </if>
-      <else-if type="bill book graphic legislation motion_picture report song" match="any">
+      <else-if type="bill book manuscript graphic legislation motion_picture report song" match="any">
         <text variable="title" text-case="title" font-style="italic"/>
         <group prefix=" (" suffix=")" delimiter=" ">
           <text term="version"/>
@@ -206,7 +239,7 @@
   </macro>
   <macro name="edition">
     <choose>
-      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+      <if type="bill book manuscript graphic legal_case legislation motion_picture report song" match="any">
         <choose>
           <if is-numeric="edition">
             <group delimiter=" " prefix=". ">
@@ -274,7 +307,7 @@
         <text variable="container-title" prefix=" "/>
         <text variable="page" prefix=" "/>
       </else-if>
-      <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+      <else-if type="bill book manuscript graphic legal_case legislation motion_picture report song" match="any">
         <group prefix=". " delimiter=". ">
           <group>
             <text term="volume" form="short" text-case="capitalize-first" suffix=" "/>
@@ -344,7 +377,7 @@
         <choose>
           <if locator="page" match="none">
             <choose>
-              <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+              <if type="bill book manuscript graphic legal_case legislation motion_picture report song" match="any">
                 <choose>
                   <if variable="volume">
                     <group>
@@ -363,7 +396,7 @@
               </else>
             </choose>
           </if>
-          <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+          <else-if type="bill book manuscript graphic legal_case legislation motion_picture report song" match="any">
             <number variable="volume" form="numeric" suffix=":"/>
           </else-if>
         </choose>
@@ -508,15 +541,27 @@
   <macro name="note">
     <text variable="note"/>
   </macro>
-  <citation et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="false" disambiguate-add-names="true" disambiguate-add-givenname="true" disambiguate-rule="all-names">
+  <citation et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="false" disambiguate-add-names="true" disambiguate-add-givenname="true">
     <layout prefix="" suffix="" delimiter="; ">
-      <group delimiter=", ">
-        <group delimiter=" ">
-          <text macro="contributors-short"/>
-          <text macro="date"/>
-        </group>
-        <text macro="point-locators"/>
-      </group>
+      <choose>
+	<if type="manuscript">
+	  <group delimiter=", ">
+            <group delimiter=" ">
+	      <text macro="title"/>
+	      <text macro="contributors-short"/>
+	    </group>
+	  </group>
+	</if>
+	<else>
+	  <group delimiter=", ">
+            <group delimiter=" ">
+              <text macro="contributors-short"/>
+              <text macro="date"/>
+            </group>
+            <text macro="point-locators"/>
+	  </group>
+	</else>
+      </choose>
     </layout>
   </citation>
   <bibliography hanging-indent="false" et-al-min="4" et-al-use-first="7" entry-spacing="0">
@@ -525,24 +570,50 @@
       <key variable="issued"/>
     </sort>
     <layout suffix=".">
-      <group delimiter=". ">
-        <text macro="contributors"/>
-        <text macro="date"/>
-        <text macro="title"/>
-      </group>
-      <text macro="description"/>
-      <text macro="secondary-contributors" prefix=". "/>
-      <text macro="container-title" prefix=". "/>
-      <text macro="container-contributors"/>
-      <text macro="edition"/>
-      <text macro="locators-chapter"/>
-      <text macro="collection-title-journal" prefix=", " suffix=", "/>
-      <text macro="locators"/>
-      <text macro="collection-title" prefix=". "/>
-      <text macro="issue"/>
-      <text macro="locators-article"/>
-      <text macro="access" prefix=". "/>
-      <text macro="note" prefix=". "/>
+      <choose>
+	<if type="manuscript">
+	  <group delimiter=", ">
+	    <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="contributors"/>
+	    </group>
+            <text macro="date"/>
+	  </group>
+	  <text macro="description"/>
+	  <text macro="secondary-contributors" prefix=". "/>
+	  <text macro="container-title" prefix=". "/>
+	  <text macro="container-contributors"/>
+	  <text macro="edition"/>
+	  <text macro="locators-chapter"/>
+	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
+	  <text macro="locators"/>
+	  <text macro="collection-title" prefix=". "/>
+	  <text macro="issue"/>
+	  <text macro="locators-article"/>
+	  <text macro="access" prefix=". "/>
+	  <text macro="note" prefix=". "/>
+	</if>
+	<else>
+	  <group delimiter=". ">
+            <text macro="contributors"/>
+            <text macro="date"/>
+            <text macro="title"/>
+	  </group>
+	  <text macro="description"/>
+	  <text macro="secondary-contributors" prefix=". "/>
+	  <text macro="container-title" prefix=". "/>
+	  <text macro="container-contributors"/>
+	  <text macro="edition"/>
+	  <text macro="locators-chapter"/>
+	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
+	  <text macro="locators"/>
+	  <text macro="collection-title" prefix=". "/>
+	  <text macro="issue"/>
+	  <text macro="locators-article"/>
+	  <text macro="access" prefix=". "/>
+	  <text macro="note" prefix=". "/>
+	</else>
+      </choose>
     </layout>
   </bibliography>
 </style>
