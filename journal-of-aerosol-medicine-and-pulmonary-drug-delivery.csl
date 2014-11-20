@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style class="in-text" version="1.0" delimiter-precedes-et-al="never" delimiter-precedes-last="never" demote-non-dropping-particle="sort-only" default-locale="en-US" xmlns="http://purl.org/net/xbiblio/csl">
-<!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" delimiter-precedes-et-al="never" delimiter-precedes-last="never" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
     <title>Journal of Aerosol Medicine and Pulmonary Drug Delivery</title>
     <title-short>JAMP </title-short>
@@ -12,7 +12,7 @@
       <name>Rui Carlos Sá</name>
       <email>rui.carlos.sa@gmail.com</email>
       <uri>http://www.ruicarlossa.eu</uri>
-	</author>
+    </author>
     <category citation-format="numeric"/>
     <category field="medicine"/>
     <issn>1941-2711</issn>
@@ -44,15 +44,6 @@
         </substitute>
       </names>
     </group>
-  </macro>
-  <macro name="author-short">
-    <names variable="author">
-      <name form="short" and="symbol" delimiter=", " initialize-with="."/>
-      <substitute>
-        <names variable="editor"/>
-        <names variable="translator"/>
-      </substitute>
-    </names>
   </macro>
   <macro name="access">
     <choose>
@@ -94,20 +85,6 @@
     <group delimiter=": ">
       <text variable="publisher-place"/>
       <text variable="publisher"/>
-    </group>
-  </macro>
-  <macro name="year-date">
-    <group prefix=" ">
-      <choose>
-        <if variable="issued">
-          <date variable="issued">
-            <date-part name="year"/>
-          </date>
-        </if>
-        <else>
-          <text term="no date" form="short"/>
-        </else>
-      </choose>
     </group>
   </macro>
   <macro name="edition">
@@ -229,7 +206,7 @@
         <else>
           <text macro="editor" prefix=" " suffix="."/>
           <group prefix=" " suffix=".">
-            <text variable="container-title" font-style="italic" strip-periods="true" form="short" suffix="."/>
+            <text variable="container-title" font-style="italic" form="short"/>
             <group delimiter=";" prefix=" ">
               <date variable="issued">
                 <date-part name="year"/>

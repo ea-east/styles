@@ -21,7 +21,7 @@
       <if type="chapter paper-conference" match="any">
         <names variable="editor translator" delimiter=", ">
           <name and="text" initialize-with="." delimiter=", "/>
-          <label  prefix=", "/>
+          <label prefix=", "/>
         </names>
       </if>
     </choose>
@@ -99,10 +99,6 @@
       </choose>
     </group>
   </macro>
-  <macro name="event">
-    <text variable="event"/>
-    <text variable="event-place" prefix=", "/>
-  </macro>
   <macro name="issued">
     <choose>
       <if variable="issued">
@@ -147,7 +143,7 @@
   <macro name="locators">
     <choose>
       <if type="article-journal article-magazine article-newspaper" match="any">
-        <group delimiter=", "  prefix=". ">
+        <group delimiter=", " prefix=". ">
           <text variable="container-title" font-style="italic"/>
           <text variable="volume" font-weight="bold"/>
           <text variable="page"/>
