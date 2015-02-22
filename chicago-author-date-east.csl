@@ -510,13 +510,13 @@
         <choose>
           <if match="none" is-numeric="collection-number">
             <group delimiter=", ">
-              <text variable="collection-title" text-case="title"/>
+              <text variable="collection-title" text-case="capitalize-first"/>
               <text variable="collection-number"/>
             </group>
           </if>
           <else>
             <group delimiter=" ">
-              <text variable="collection-title" text-case="title"/>
+              <text variable="collection-title" text-case="capitalize-first"/>
               <text variable="collection-number"/>
             </group>
           </else>
