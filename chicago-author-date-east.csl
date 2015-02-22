@@ -391,9 +391,6 @@
           <if variable="volume issue" match="any">
             <text variable="page" prefix=": "/>
           </if>
-	  <else-if variable="collection-number" match="none">
-	    <text variable="page" prefix=" "/>
-	  </else-if>
           <else>
             <text variable="page" prefix=", "/>
           </else>
