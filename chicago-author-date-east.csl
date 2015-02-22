@@ -653,7 +653,7 @@
 	  <text macro="note" prefix=". "/>
 	</if>
 	<else>
-	  <group delimiter=" ">
+	  <group delimiter=". ">
             <text macro="contributors"/>
             <text macro="date"/>
             <text macro="title"/>
