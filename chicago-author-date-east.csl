@@ -56,7 +56,7 @@
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference" match="any">
-        <group prefix=", " delimiter=", ">
+        <group prefix="xxx0, " delimiter=", ">
           <names variable="container-author" delimiter=", ">
             <label form="verb" suffix=" "/>
             <name and="text" delimiter=", "/>
@@ -72,13 +72,13 @@
   <macro name="editor">
     <names variable="editor">
       <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix=", "/>
+      <label form="short" prefix="xxx1, "/>
     </names>
   </macro>
   <macro name="translator">
     <names variable="translator">
       <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix=", "/>
+      <label form="short" prefix="xxx2, "/>
     </names>
   </macro>
   <macro name="recipient">
@@ -104,7 +104,7 @@
       <if type="article-journal article-magazine article-newspaper review review-book" match="any">
         <text macro="container-title"/>
       </if>
-      <if type="manuscript">
+      <else-if type="manuscript">
 	<group delimiter=". ">
 	  <names variable="author">
             <label form="short" suffix=" " text-case="capitalize-first"/>
@@ -117,12 +117,12 @@
 	  </names>
 	  <text macro="recipient"/>
 	</group>
-      </if>
+      </else-if>
       <else>
 	<group delimiter=". ">
 	  <names variable="author">
             <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-            <label form="short" prefix=", "/>
+            <label form="short" prefix="xxx3, "/>
             <substitute>
               <names variable="editor"/>
               <names variable="translator"/>
@@ -138,7 +138,7 @@
     <group delimiter=". ">
       <names variable="author">
         <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-        <label form="short" prefix=", "/>
+        <label form="short" prefix="xxx4, "/>
         <substitute>
           <names variable="editor"/>
           <names variable="translator"/>
@@ -282,13 +282,13 @@
       <else-if type="chapter  paper-conference" match="any">
         <choose>
           <if is-numeric="edition">
-            <group delimiter=" " prefix=", ">
+            <group delimiter=" " prefix="xxx5, ">
               <number variable="edition" form="ordinal"/>
               <text term="edition" form="short"/>
             </group>
           </if>
           <else>
-            <text variable="edition" prefix=", "/>
+            <text variable="edition" prefix="xxx6, "/>
           </else>
         </choose>
       </else-if>
@@ -314,7 +314,7 @@
             </group>
           </if>
           <else-if variable="issue">
-            <group delimiter=" " prefix=", ">
+            <group delimiter=" " prefix="xxx7, ">
               <text term="issue" form="short"/>
               <text variable="issue"/>
               <date variable="issued" prefix="(" suffix=")">
@@ -323,14 +323,14 @@
             </group>
           </else-if>
           <else>
-            <date variable="issued" prefix=", ">
+            <date variable="issued" prefix="xxx8, ">
               <date-part name="month"/>
             </date>
           </else>
         </choose>
       </if>
       <else-if type="legal_case">
-        <text variable="volume" prefix=", "/>
+        <text variable="volume" prefix="xxx9, "/>
         <text variable="container-title" prefix=" "/>
         <text variable="page" prefix=" "/>
       </else-if>
@@ -363,7 +363,7 @@
       <if type="chapter paper-conference" match="any">
         <choose>
           <if variable="page">
-            <group prefix=", ">
+            <group prefix="xxx10, ">
               <text variable="volume" suffix=":"/>
               <text variable="page"/>
             </group>
@@ -375,7 +375,7 @@
   <macro name="locators-article">
     <choose>
       <if type="article-newspaper">
-        <group prefix=", " delimiter=", ">
+        <group prefix="xxx11, " delimiter=", ">
           <group delimiter=" ">
             <text variable="edition"/>
             <text term="edition"/>
@@ -391,8 +391,11 @@
           <if variable="volume issue" match="any">
             <text variable="page" prefix=": "/>
           </if>
+	  <else-if variable="collection-title">
+	    <text variable="page" prefix=" "/>
+	  </else-if>
           <else>
-            <text variable="page" prefix=", "/>
+            <text variable="page" prefix="xxx12, "/>
           </else>
         </choose>
       </else-if>
@@ -410,7 +413,7 @@
                     <group>
                       <text term="volume" form="short" suffix=" "/>
                       <number variable="volume" form="numeric"/>
-                      <label variable="locator" form="short" prefix=", " suffix=" "/>
+                      <label variable="locator" form="short" prefix="xxx13, " suffix=" "/>
                     </group>
                   </if>
                   <else>
@@ -583,7 +586,7 @@
         </group>
       </else-if>
       <else-if type="article-newspaper article-magazine personal_communication" match="any">
-        <text macro="day-month" prefix=", "/>
+        <text macro="day-month" prefix="xxx14, "/>
       </else-if>
       <else>
         <group prefix=". " delimiter=", ">
@@ -644,7 +647,7 @@
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
 	  <text macro="locators-chapter"/>
-	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
+	  <text macro="collection-title-journal" prefix="xxx15, " suffix="xxx16, "/>
 	  <text macro="locators"/>
 	  <text macro="collection-title" prefix=". "/>
 	  <text macro="issue"/>
@@ -653,7 +656,7 @@
 	  <text macro="note" prefix=". "/>
 	</if>
 	<else>
-	  <group delimiter=". ">
+	  <group delimiter=" ">
             <text macro="contributors"/>
             <text macro="date"/>
             <text macro="title"/>
@@ -664,7 +667,7 @@
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
 	  <text macro="locators-chapter"/>
-	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
+	  <text macro="collection-title-journal" prefix="xxx17, " suffix="xxx18, "/>
 	  <text macro="locators"/>
 	  <text macro="collection-title" prefix=". "/>
 	  <text macro="issue"/>
