@@ -56,7 +56,7 @@
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference" match="any">
-        <group prefix="xxx0, " delimiter=", ">
+        <group prefix=", " delimiter=", ">
           <names variable="container-author" delimiter=", ">
             <label form="verb" suffix=" "/>
             <name and="text" delimiter=", "/>
@@ -72,13 +72,13 @@
   <macro name="editor">
     <names variable="editor">
       <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix="xxx1, "/>
+      <label form="short" prefix=", "/>
     </names>
   </macro>
   <macro name="translator">
     <names variable="translator">
       <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix="xxx2, "/>
+      <label form="short" prefix=", "/>
     </names>
   </macro>
   <macro name="recipient">
@@ -122,7 +122,7 @@
 	<group delimiter=". ">
 	  <names variable="author">
             <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-            <label form="short" prefix="xxx3, "/>
+            <label form="short" prefix=", "/>
             <substitute>
               <names variable="editor"/>
               <names variable="translator"/>
@@ -138,7 +138,7 @@
     <group delimiter=". ">
       <names variable="author">
         <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-        <label form="short" prefix="xxx4, "/>
+        <label form="short" prefix=", "/>
         <substitute>
           <names variable="editor"/>
           <names variable="translator"/>
@@ -282,13 +282,13 @@
       <else-if type="chapter  paper-conference" match="any">
         <choose>
           <if is-numeric="edition">
-            <group delimiter=" " prefix="xxx5, ">
+            <group delimiter=" " prefix=", ">
               <number variable="edition" form="ordinal"/>
               <text term="edition" form="short"/>
             </group>
           </if>
           <else>
-            <text variable="edition" prefix="xxx6, "/>
+            <text variable="edition" prefix=", "/>
           </else>
         </choose>
       </else-if>
@@ -314,7 +314,7 @@
             </group>
           </if>
           <else-if variable="issue">
-            <group delimiter=" " prefix="xxx7, ">
+            <group delimiter=" " prefix=", ">
               <text term="issue" form="short"/>
               <text variable="issue"/>
               <date variable="issued" prefix="(" suffix=")">
@@ -323,14 +323,14 @@
             </group>
           </else-if>
           <else>
-            <date variable="issued" prefix="xxx8, ">
+            <date variable="issued" prefix=", ">
               <date-part name="month"/>
             </date>
           </else>
         </choose>
       </if>
       <else-if type="legal_case">
-        <text variable="volume" prefix="xxx9, "/>
+        <text variable="volume" prefix=", "/>
         <text variable="container-title" prefix=" "/>
         <text variable="page" prefix=" "/>
       </else-if>
@@ -363,7 +363,7 @@
       <if type="chapter paper-conference" match="any">
         <choose>
           <if variable="page">
-            <group prefix="xxx10, ">
+            <group prefix=", ">
               <text variable="volume" suffix=":"/>
               <text variable="page"/>
             </group>
@@ -375,7 +375,7 @@
   <macro name="locators-article">
     <choose>
       <if type="article-newspaper">
-        <group prefix="xxx11, " delimiter=", ">
+        <group prefix=", " delimiter=", ">
           <group delimiter=" ">
             <text variable="edition"/>
             <text term="edition"/>
@@ -391,11 +391,11 @@
           <if variable="volume issue" match="any">
             <text variable="page" prefix=": "/>
           </if>
-	  <else-if variable="collection-title">
+	  <else-if variable="collection-number" match="none">
 	    <text variable="page" prefix=" "/>
 	  </else-if>
           <else>
-            <text variable="page" prefix="xxx12, "/>
+            <text variable="page" prefix=", "/>
           </else>
         </choose>
       </else-if>
@@ -413,7 +413,7 @@
                     <group>
                       <text term="volume" form="short" suffix=" "/>
                       <number variable="volume" form="numeric"/>
-                      <label variable="locator" form="short" prefix="xxx13, " suffix=" "/>
+                      <label variable="locator" form="short" prefix=", " suffix=" "/>
                     </group>
                   </if>
                   <else>
@@ -586,7 +586,7 @@
         </group>
       </else-if>
       <else-if type="article-newspaper article-magazine personal_communication" match="any">
-        <text macro="day-month" prefix="xxx14, "/>
+        <text macro="day-month" prefix=", "/>
       </else-if>
       <else>
         <group prefix=". " delimiter=", ">
@@ -647,7 +647,7 @@
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
 	  <text macro="locators-chapter"/>
-	  <text macro="collection-title-journal" prefix="xxx15, " suffix="xxx16, "/>
+	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
 	  <text macro="locators"/>
 	  <text macro="collection-title" prefix=". "/>
 	  <text macro="issue"/>
@@ -667,7 +667,7 @@
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
 	  <text macro="locators-chapter"/>
-	  <text macro="collection-title-journal" prefix="xxx17, " suffix="xxx18, "/>
+	  <text macro="collection-title-journal" prefix=", " suffix=", "/>
 	  <text macro="locators"/>
 	  <text macro="collection-title" prefix=". "/>
 	  <text macro="issue"/>
