@@ -241,7 +241,7 @@
         </choose>
       </if>
       <else-if type="bill book manuscript graphic legislation motion_picture report song" match="any">
-        <text variable="title" text-case="title" font-style="italic"/>
+        <text variable="title" text-case="capitalize-first" font-style="italic"/>
         <group prefix=" (" suffix=")" delimiter=" ">
           <text term="version"/>
           <text variable="version"/>
@@ -260,7 +260,7 @@
         <text variable="title"/>
       </else-if>
       <else>
-        <text variable="title" text-case="title" quotes="true"/>
+        <text variable="title" text-case="capitalize-first" quotes="true"/>
       </else>
     </choose>
   </macro>
@@ -659,7 +659,11 @@
             <text macro="title"/>
 	  </group>
 	  <text macro="description"/>
-	  <text macro="secondary-contributors" prefix=". "/>
+	  <choose>
+	  <if type="article-journal" match="none">
+	    <text macro="secondary-contributors" prefix=". "/>
+	  </if>
+	  </choose>
 	  <text macro="container-title" prefix=". "/>
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
