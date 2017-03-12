@@ -8,7 +8,7 @@
     <link href="http://www.springerprotocols.com/cdp/view/contributors#ref" rel="documentation"/>
     <author>
       <name>Charles Parnot</name>
-      <email>charles@mekentosj.com</email>
+      <email>charles.parnot@gmail.com</email>
       <uri>http://twitter.com/cparnot</uri>
     </author>
     <category citation-format="numeric"/>
@@ -95,7 +95,8 @@
             <text macro="title" suffix=","/>
             <choose>
               <if variable="container-title">
-                <text macro="editor" prefix="In: " suffix=" "/>
+                <text term="in" text-case="capitalize-first" suffix=": "/>
+                <text macro="editor" suffix=" "/>
                 <text variable="container-title" suffix=", "/>
                 <text macro="page"/>
                 <text macro="publisher"/>
