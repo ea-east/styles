@@ -37,8 +37,8 @@
         <multiple>edited and translated by</multiple>
       </term>
       <term name="translator" form="short">trans.</term>
-      <term name="open-quote">‘</term>
-      <term name="close-quote">’</term>
+      <term name="open-quote">‘'</term>
+      <term name="close-quote">’'</term>
       <term name="open-inner-quote">“</term>
       <term name="close-inner-quote">”</term>
     </terms>
@@ -104,7 +104,7 @@
       <if type="article-journal article-magazine article-newspaper review review-book" match="any">
         <text macro="container-title"/>
       </if>
-      <if type="manuscript">
+      <else-if type="manuscript">
 	<group delimiter=". ">
 	  <names variable="author">
             <label form="short" suffix=" " text-case="capitalize-first"/>
@@ -117,7 +117,7 @@
 	  </names>
 	  <text macro="recipient"/>
 	</group>
-      </if>
+      </else-if>
       <else>
 	<group delimiter=". ">
 	  <names variable="author">
@@ -241,7 +241,7 @@
         </choose>
       </if>
       <else-if type="bill book manuscript graphic legislation motion_picture report song" match="any">
-        <text variable="title" text-case="title" font-style="italic"/>
+        <text variable="title" text-case="capitalize-first" font-style="italic"/>
         <group prefix=" (" suffix=")" delimiter=" ">
           <text term="version"/>
           <text variable="version"/>
@@ -260,7 +260,7 @@
         <text variable="title"/>
       </else-if>
       <else>
-        <text variable="title" text-case="title" quotes="true"/>
+        <text variable="title" text-case="capitalize-first" quotes="true"/>
       </else>
     </choose>
   </macro>
@@ -442,7 +442,7 @@
     </choose>
     <choose>
       <if type="legal_case" match="none">
-        <text variable="container-title" text-case="title" font-style="italic"/>
+        <text variable="container-title" text-case="capitalize-first" font-style="italic"/>
       </if>
     </choose>
   </macro>
@@ -510,13 +510,13 @@
         <choose>
           <if match="none" is-numeric="collection-number">
             <group delimiter=", ">
-              <text variable="collection-title" text-case="title"/>
+              <text variable="collection-title" text-case="capitalize-first"/>
               <text variable="collection-number"/>
             </group>
           </if>
           <else>
             <group delimiter=" ">
-              <text variable="collection-title" text-case="title"/>
+              <text variable="collection-title" text-case="capitalize-first"/>
               <text variable="collection-number"/>
             </group>
           </else>
@@ -659,7 +659,11 @@
             <text macro="title"/>
 	  </group>
 	  <text macro="description"/>
-	  <text macro="secondary-contributors" prefix=". "/>
+	  <choose>
+	  <if type="article-journal" match="none">
+	    <text macro="secondary-contributors" prefix=". "/>
+	  </if>
+	  </choose>
 	  <text macro="container-title" prefix=". "/>
 	  <text macro="container-contributors"/>
 	  <text macro="edition"/>
