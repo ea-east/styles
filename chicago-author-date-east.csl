@@ -142,8 +142,7 @@
         <substitute>
           <names variable="editor"/>
           <names variable="translator"/>
-          <text macro="substitute-title"/>
-          <text macro="title"/>
+          <names variable="director"/>
         </substitute>
       </names>
       <text macro="recipient"/>
@@ -241,7 +240,7 @@
         </choose>
       </if>
       <else-if type="bill book manuscript graphic legislation motion_picture report song" match="any">
-        <text variable="title" text-case="capitalize-first" font-style="italic"/>
+        <text variable="title" text-case="title" font-style="italic"/>
         <group prefix=" (" suffix=")" delimiter=" ">
           <text term="version"/>
           <text variable="version"/>
@@ -256,11 +255,11 @@
           </names>
         </group>
       </else-if>
-      <else-if type="legal_case interview" match="any">
+      <else-if type="legal_case interview patent" match="any">
         <text variable="title"/>
       </else-if>
       <else>
-        <text variable="title" text-case="capitalize-first" quotes="true"/>
+        <text variable="title" text-case="title" quotes="true"/>
       </else>
     </choose>
   </macro>
@@ -279,7 +278,7 @@
           </else>
         </choose>
       </if>
-      <else-if type="chapter  paper-conference" match="any">
+      <else-if type="chapter paper-conference" match="any">
         <choose>
           <if is-numeric="edition">
             <group delimiter=" " prefix=", ">
@@ -442,7 +441,7 @@
     </choose>
     <choose>
       <if type="legal_case" match="none">
-        <text variable="container-title" text-case="capitalize-first" font-style="italic"/>
+        <text variable="container-title" text-case="title" font-style="italic"/>
       </if>
     </choose>
   </macro>
@@ -510,13 +509,13 @@
         <choose>
           <if match="none" is-numeric="collection-number">
             <group delimiter=", ">
-              <text variable="collection-title" text-case="capitalize-first"/>
+              <text variable="collection-title" text-case="title"/>
               <text variable="collection-number"/>
             </group>
           </if>
           <else>
             <group delimiter=" ">
-              <text variable="collection-title" text-case="capitalize-first"/>
+              <text variable="collection-title" text-case="title"/>
               <text variable="collection-number"/>
             </group>
           </else>
@@ -548,6 +547,12 @@
           <text variable="medium" text-case="capitalize-first"/>
         </group>
       </if>
+      <else-if type="patent">
+        <group delimiter=" " prefix=". ">
+          <text variable="authority"/>
+          <text variable="number"/>
+        </group>
+      </else-if>
       <else>
         <text variable="medium" text-case="capitalize-first" prefix=". "/>
       </else>
@@ -584,6 +589,25 @@
       </else-if>
       <else-if type="article-newspaper article-magazine personal_communication" match="any">
         <text macro="day-month" prefix=", "/>
+      </else-if>
+      <else-if type="patent">
+        <group delimiter=", " prefix=", ">
+          <group delimiter=" ">
+            <!--Needs Localization-->
+            <text value="filed"/>
+            <date variable="submitted" form="text"/>
+          </group>
+          <group delimiter=" ">
+            <choose>
+              <if variable="issued submitted" match="all">
+                <text term="and"/>
+              </if>
+            </choose>
+            <!--Needs Localization-->
+            <text value="issued"/>
+            <date variable="issued" form="text"/>
+          </group>
+        </group>
       </else-if>
       <else>
         <group prefix=". " delimiter=", ">
@@ -627,6 +651,7 @@
     <sort>
       <key macro="contributors"/>
       <key variable="issued"/>
+      <key variable="title"/>
     </sort>
     <layout suffix=".">
       <choose>
