@@ -157,7 +157,6 @@
 	  <substitute>
             <names variable="editor"/>
             <names variable="translator"/>
-            <text macro="title"/>
 	  </substitute>
 	</names>
       </if>
