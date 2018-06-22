@@ -23,10 +23,7 @@
         <single>ed. &amp; trans.</single>
         <multiple>eds. &amp; trans.</multiple>
       </term>
-      <term name="translator" form="short">
-        <single>trans.</single>
-        <multiple>trans.</multiple>
-      </term>
+      <term name="translator" form="short">trans.</term>
       <term name="et-al">&amp; al.</term>
     </terms>
   </locale>
@@ -142,7 +139,7 @@
       <else>
         <choose>
           <if variable="DOI">
-            <text variable="DOI" prefix="http://dx.doi.org/"/>
+            <text variable="DOI" prefix="https://doi.org/"/>
           </if>
           <else>
             <choose>
@@ -559,7 +556,7 @@
       </if>
     </choose>
   </macro>
-  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true"  collapse="year" givenname-disambiguation-rule="primary-name">
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year" givenname-disambiguation-rule="primary-name">
     <sort>
       <key macro="issued-sort"/>
       <key macro="author"/>

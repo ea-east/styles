@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
   <info>
-    <title>Harvard - Southampton Solent University</title>
+    <title>Southampton Solent University - Harvard</title>
     <id>http://www.zotero.org/styles/harvard-southampton-solent-university</id>
     <link href="http://www.zotero.org/styles/harvard-southampton-solent-university" rel="self"/>
     <link href="http://www.zotero.org/styles/taylor-and-francis-harvard-x" rel="template"/>
@@ -291,7 +291,7 @@
           <text variable="page"/>
         </group>
       </if>
-      <else-if type=" article-newspaper" match="any">
+      <else-if type="article-newspaper" match="any">
         <date variable="issued" delimiter=" " prefix=", ">
           <date-part name="day"/>
           <date-part name="month" form="short" strip-periods="true"/>
