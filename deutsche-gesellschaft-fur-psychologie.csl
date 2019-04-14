@@ -89,7 +89,7 @@
       <if type="article-newspaper" match="none">
         <choose>
           <if variable="DOI">
-            <text value="doi:"/>
+            <text value="https://doi.org/"/>
             <text variable="DOI"/>
           </if>
           <else-if variable="URL">
@@ -240,7 +240,7 @@
         <group prefix=", " delimiter=", ">
           <group>
             <text variable="volume" font-style="italic"/>
-            <text variable="issue" prefix=" (" suffix=")"/>
+            <text variable="issue" prefix="(" suffix=")"/>
           </group>
           <text variable="page"/>
         </group>
