@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
+<style class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="de-AT" xmlns="http://purl.org/net/xbiblio/csl">
+  <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
-    <title>Anglia Ruskin University - Harvard</title>
-    <id>http://www.zotero.org/styles/harvard-anglia-ruskin-university</id>
-    <link href="http://www.zotero.org/styles/harvard-anglia-ruskin-university" rel="self"/>
-    <link href="http://libweb.anglia.ac.uk/referencing/harvard.htm" rel="documentation"/>
+    <title>TGM Wien Diplomarbeit ÖNORM (German - Austria)</title>
+    <title-short>TGM ÖNORM</title-short>
+    <id>http://www.zotero.org/styles/tgm-wien-diplomarbeit-onorm</id>
+    <link href="http://www.zotero.org/styles/tgm-wien-diplomarbeit-onorm" rel="self"/>
+    <link href="http://www.zotero.org/styles/harvard-anglia-ruskin-university" rel="template"/> 
+    <link href="https://github.com/citation-style-language/styles/pull/3929#issuecomment-480520187" rel="documentation"/>
     <author>
-      <name>Steven Singleton</name>
-      <email>stvn@gmx.ie</email>
+      <name>KatiGel</name>
     </author>
     <category citation-format="author-date"/>
-    <category field="generic-base"/>
-    <summary>Anglia Ruskin University Harvard style</summary>
-    <updated>2019-06-06T21:04:52+00:00</updated>
+    <category field="engineering"/>
+    <summary>Vereinfachte Zitierregeln nach Önorm</summary>
+    <published>2019-02-09T19:02:58+00:00</published>
+    <updated>2019-02-09T19:02:58+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <macro name="cite-author">
@@ -27,8 +30,8 @@
         <text variable="title" font-style="italic"/>
       </else-if>
       <else>
-        <names variable="author" suffix=",">
-          <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
+        <names variable="author" suffix=": ">
+          <name delimiter="; " suffix=" " delimiter-precedes-last="never" initialize="false" initialize-with="" name-as-sort-order="all"/>
           <label form="short" prefix=" "/>
           <substitute>
             <names variable="editor"/>
@@ -39,7 +42,7 @@
     </choose>
   </macro>
   <macro name="anon">
-    <text term="anonymous" form="short" text-case="capitalize-first" strip-periods="true"/>
+    <text term="anonymous" form="short" text-case="capitalize-first" strip-periods="true" suffix=": "/>
   </macro>
   <macro name="year-date">
     <choose>
@@ -57,11 +60,7 @@
           </else-if>
           <else-if variable="accessed">
             <choose>
-              <if type="webpage song" match="any">
-                <date variable="accessed">
-                  <date-part name="year"/>
-                </date>
-              </if>
+              <if type="webpage song" match="any"/>
               <else>
                 <text term="no date" form="short"/>
               </else>
@@ -110,10 +109,7 @@
               </if>
               <else-if variable="medium">
                 <text variable="medium" prefix="[" suffix="]"/>
-              </else-if>
-              <else>
-                <text term="online" prefix="[" suffix="]"/>
-              </else>
+              </else-if>              
             </choose>
           </if>
           <else-if type="thesis">
@@ -171,7 +167,7 @@
       </else-if>
       <else>
         <group delimiter=": ">
-          <text variable="publisher-place"/>
+          <text variable="publisher-place" prefix="- "/>
           <text variable="publisher"/>
         </group>
       </else>
@@ -182,7 +178,7 @@
       <if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
         <group suffix=".">
           <text term="in" text-case="capitalize-first" suffix=": "/>
-          <group delimiter=". ">
+          <group delimiter=", ">
             <names variable="editor" delimiter=", ">
               <name and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
               <label form="short" prefix=", "/>
@@ -279,7 +275,7 @@
           <choose>
             <if variable="page">
               <group>
-                <label variable="page" form="short"/>
+                <label variable="page"/>
                 <text variable="page"/>
               </group>
             </if>
@@ -287,9 +283,9 @@
         </group>
       </if>
       <else-if type="book chapter paper-conference manuscript entry-dictionary entry-encyclopedia thesis motion_picture song report" match="any">
-        <group suffix=".">
+        <group suffix=",">
           <text variable="event" suffix=". "/>
-          <group delimiter=".">
+          <group delimiter=", ">
             <text macro="publisher"/>
             <group>
               <label variable="page" form="short"/>
@@ -316,11 +312,11 @@
     <choose>
       <if variable="URL">
         <group>
-          <text term="available at" text-case="capitalize-first" prefix=" " suffix=": "/>
-          <text variable="URL" prefix="&lt;" suffix="&gt;"/>
-          <group prefix=" [" suffix="].">
-            <text term="accessed" text-case="capitalize-first" suffix=" "/>
-            <date variable="accessed" delimiter=" ">
+          <text term="online" text-case="capitalize-first" prefix=" " suffix=" im Internet: "/>
+          <text variable="URL" prefix="URL: " suffix=", "/>
+          <group prefix=" " suffix=".">
+            <text term="accessed" text-case="capitalize-first" suffix=" am: "/>
+            <date delimiter=" " variable="accessed">
               <date-part name="day"/>
               <date-part name="month" form="short"/>
               <date-part name="year"/>
@@ -337,7 +333,7 @@
       </if>
       <else>
         <names variable="author">
-          <name form="short" and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
+          <name form="short" delimiter-precedes-last="never" initialize-with="."/>
           <substitute>
             <names variable="editor"/>
             <text variable="title"/>
@@ -347,7 +343,7 @@
     </choose>
   </macro>
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix">
-    <layout prefix="(" suffix=")" delimiter="; ">
+    <layout delimiter="; " prefix="(" suffix=")">
       <group delimiter=", ">
         <group delimiter=", ">
           <text macro="author-short"/>
@@ -369,14 +365,6 @@
     <layout suffix=".">
       <group delimiter=" ">
         <text macro="cite-author"/>
-        <choose>
-          <if type="legal_case" match="any">
-            <text macro="year-date"/>
-          </if>
-          <else>
-            <text macro="year-date" suffix=". "/>
-          </else>
-        </choose>
       </group>
       <group delimiter=" ">
         <text macro="primary-title" suffix="."/>
@@ -389,6 +377,7 @@
         <text macro="container-online"/>
         <text macro="legal-detail"/>
         <text macro="locator"/>
+        <text macro="year-date"/>
       </group>
       <text macro="online-access"/>
     </layout>
