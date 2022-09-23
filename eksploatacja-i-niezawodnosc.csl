@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>Eksploatacja i Niezawodność (Maintenance and Reliability) (English)</title>
+    <title>Eksploatacja i Niezawodnosc - Maintenance and Reliability</title>
     <id>http://www.zotero.org/styles/eksploatacja-i-niezawodnosc</id>
     <link href="http://www.zotero.org/styles/eksploatacja-i-niezawodnosc" rel="self"/>
     <link href="http://www.zotero.org/styles/annals-of-oncology" rel="template"/>
@@ -44,7 +44,7 @@
     <text variable="publisher" suffix=": "/>
   </macro>
   <macro name="container-title">
-    <text variable="container-title" vertical-align="baseline" form="short"/>
+    <text variable="container-title" vertical-align="baseline"/>
   </macro>
   <macro name="title">
     <choose>
@@ -75,13 +75,16 @@
   </macro>
   <citation collapse="citation-number">
     <sort>
-      <key variable="citation-number"/>
+      <key variable="author"/>
     </sort>
     <layout prefix="[" suffix="]" delimiter=", ">
       <text variable="citation-number"/>
     </layout>
   </citation>
   <bibliography et-al-min="5" et-al-use-first="3" delimiter-precedes-et-al="never" second-field-align="flush">
+    <sort>
+      <key variable="author"/>
+    </sort>
     <layout suffix=".">
       <text variable="citation-number" suffix=". "/>
       <choose>
@@ -125,6 +128,7 @@
           </choose>
         </else>
       </choose>
+      <text variable="DOI" prefix=", https://doi.org/"/>
     </layout>
   </bibliography>
 </style>

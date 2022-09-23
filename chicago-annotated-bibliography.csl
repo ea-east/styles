@@ -28,6 +28,9 @@
     <contributor>
       <name>Sebastian Karcher</name>
     </contributor>
+    <contributor>
+      <name>Brenton M. Wiernik</name>
+    </contributor>
     <category citation-format="note"/>
     <category field="generic-base"/>
     <summary>Chicago format with short notes and annotated bibliography</summary>
@@ -182,7 +185,7 @@
           <text macro="editor"/>
           <text macro="translator"/>
           <choose>
-            <if type="webpage post-weblog" match="any">
+            <if type="article-magazine article-newspaper webpage post-weblog" match="any">
               <text variable="container-title"/>
             </if>
           </choose>
@@ -698,7 +701,14 @@
     <choose>
       <if variable="title">
         <group delimiter=" ">
-          <text term="presented at"/>
+          <choose>
+            <if variable="genre">
+              <text term="presented at"/>
+            </if>
+            <else>
+              <text term="presented at" text-case="capitalize-first"/>
+            </else>
+          </choose>
           <text variable="event"/>
         </group>
       </if>
