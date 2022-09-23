@@ -471,7 +471,7 @@
       <else>
 	<choose>
 	  <if type="manuscript">
-	    <text/>
+	    <text value=""/>
 	  </if>
 	  <else>
           <text term="no date" form="short"/>
