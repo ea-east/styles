@@ -639,8 +639,17 @@
 	      <text macro="title"/>
 	      <text macro="contributors-short"/>
 	    </group>
+	    <text macro="point-locators"/>
 	  </group>
 	</if>
+	<else-if keyword="primary">
+	  <group delimiter=" ">
+            <group delimiter=" ">
+	      <text variable="title" form="short"/>
+            </group>
+            <text macro="point-locators"/>
+	  </group>
+	</else-if>
 	<else>
 	  <group delimiter=", ">
             <group delimiter=" ">
